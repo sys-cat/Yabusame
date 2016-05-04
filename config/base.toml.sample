@@ -1,0 +1,7 @@
+[Server]
+PORT="8080"
+ENV="staging"
+
+[Auth]
+SECRET="test12345"
+SALT="SALT"
