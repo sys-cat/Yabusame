@@ -20,7 +20,7 @@ type Auth struct {
 }
 
 func Get()(conf Base) {
-  _, err := toml.DecodeFile("./base.toml", &conf)
+  _, err := toml.DecodeFile("config/base.toml", &conf)
   if err != nil { panic(err) }
   return conf
 }
