@@ -2,7 +2,7 @@ package main
 import (
   "os"
   //"fmt"
-  "log"
+  //"log"
   "./config"
   "github.com/gin-gonic/gin"
 )
@@ -50,10 +50,32 @@ func main() {
     v1.POST("/calendar", CalenderFunc)
     v1.POST("/category", CategoryFunc)
   }
-  router.Run()
+  router.GET("/call/status/check.json", func(c *gin.Context){
+    c.JSON(200,gin.H{
+      "status":"200",
+      "result":"OK",
+    })
+  })
+  router.Run(con.Serv.PORT)
 }
 
-func ItemFunc(c *gin.Context) { c.JSON(200, gin.H{"status":"200"}) }
-func UserFunc(c *gin.Context) { c.JSON(200, gin.H{"status":"200"}) }
-func CalenderFunc(c *gin.Context) { c.JSON(200, gin.H{"status":"200"}) }
-func CategoryFunc(c *gin.Context) { c.JSON(200, gin.H{"status":"200"}) }
+func ItemFunc(c *gin.Context) {
+  var req Item
+  c.BindJSON(&req)
+  c.JSON(200, gin.H{"status":"200"})
+}
+func UserFunc(c *gin.Context) {
+  var req User
+  c.BindJSON(&req)
+  c.JSON(200, gin.H{"status":"200"})
+}
+func CalenderFunc(c *gin.Context) {
+  var req Calender
+  c.BindJSON(&req)
+  c.JSON(200, gin.H{"status":"200"})
+}
+func CategoryFunc(c *gin.Context) {
+  var req Category
+  c.BindJSON(&req)
+  c.JSON(200, gin.H{"status":"200"})
+}
