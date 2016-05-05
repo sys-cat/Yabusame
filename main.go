@@ -4,6 +4,7 @@ import (
   //"fmt"
   //"log"
   "./config"
+  "./data"
   "github.com/gin-gonic/gin"
 )
 
@@ -32,10 +33,17 @@ type Category struct {
 }
 
 var con Config.Base = Config.Get()
+
+func setAccessHeader(c *gin.Context) {
+  c.Header("Access-Control-Allow-Origin", "*")
+  c.Header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+  c.Header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS")
+}
+
 func main() {
   router := gin.Default()
   var path string
-  if con.Serv.ENV == "production" {
+  if con.Server.ENV == "production" {
     path = "./production.log"
   } else {
     path = "./staging.log"
@@ -54,27 +62,32 @@ func main() {
     c.JSON(200,gin.H{
       "status":"200",
       "result":"OK",
+      "ESVer":Data.Alive(con.Elasticsearch),
     })
   })
-  router.Run(con.Serv.PORT)
+  router.Run(con.Server.PORT)
 }
 
 func ItemFunc(c *gin.Context) {
+  setAccessHeader(c)
   var req Item
   c.BindJSON(&req)
   c.JSON(200, gin.H{"status":"200"})
 }
 func UserFunc(c *gin.Context) {
+  setAccessHeader(c)
   var req User
   c.BindJSON(&req)
   c.JSON(200, gin.H{"status":"200"})
 }
 func CalenderFunc(c *gin.Context) {
+  setAccessHeader(c)
   var req Calender
   c.BindJSON(&req)
   c.JSON(200, gin.H{"status":"200"})
 }
 func CategoryFunc(c *gin.Context) {
+  setAccessHeader(c)
   var req Category
   c.BindJSON(&req)
   c.JSON(200, gin.H{"status":"200"})

@@ -1,7 +1,12 @@
 [Server]
-PORT="8080"
+PORT=":8080"
 ENV="staging"
 
 [Auth]
 SECRET="test12345"
 SALT="SALT"
+
+[Elasticsearch]
+URL="http://127.0.0.1"
+CLIENT_PORT="9201"
+BASE_PORT="9200"

@@ -5,7 +5,8 @@ import (
 )
 
 type Base struct {
-  Serv Server
+  Elasticsearch Elasticsearch
+  Server Server
   Auth Auth
 }
 
@@ -17,6 +18,12 @@ type Server struct {
 type Auth struct {
   SEC string `toml:"SECRET"`
   SALT string `toml:"SALT"`
+}
+
+type Elasticsearch struct {
+  URL string `toml:"URL"`
+  CLIENT_PORT string `toml:"CLIENT_PORT"`
+  BASE_PORT string `toml:"BASE_PORT"`
 }
 
 func Get()(conf Base) {
