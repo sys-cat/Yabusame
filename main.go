@@ -20,7 +20,7 @@ type User struct {
   SysId int `json:"system_id"`
   Device string `json:"device"`
 }
-type Calender struct {
+type Calendar struct {
   Id int `json:"id"`
   Date string `json:"date"`
   ItemId int `json:"item_id"`
@@ -55,14 +55,15 @@ func main() {
   {
     v1.POST("/item", ItemFunc)
     v1.POST("/user", UserFunc)
-    v1.POST("/calendar", CalenderFunc)
+    v1.POST("/calendar", CalendarFunc)
     v1.POST("/category", CategoryFunc)
   }
   router.GET("/call/status/check.json", func(c *gin.Context){
     c.JSON(200,gin.H{
       "status":"200",
       "result":"OK",
-      "ESVer":Data.Alive(con.Elasticsearch),
+      "ESVer":Data.Alive(),
+      "ESIndex":Data.ExistsIndex("Master"),
     })
   })
   router.Run(con.Server.PORT)
@@ -80,9 +81,9 @@ func UserFunc(c *gin.Context) {
   c.BindJSON(&req)
   c.JSON(200, gin.H{"status":"200"})
 }
-func CalenderFunc(c *gin.Context) {
+func CalendarFunc(c *gin.Context) {
   setAccessHeader(c)
-  var req Calender
+  var req Calendar
   c.BindJSON(&req)
   c.JSON(200, gin.H{"status":"200"})
 }

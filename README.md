@@ -24,4 +24,39 @@ Android, iOS, Web にデバイスに関わらず同じ内容をPushするシス�
 * カレンダー機能
 * カテゴリ機能
 
+## DB構成
+
+*Index: Push*
+
+Type : Item
+| field | mapping | default term |
+| Title | string | "no title" |
+| Body | string | "no body" |
+| Category | integer | "" |
+| CreatedAt | Date | Now |
+| UpdatedAt | Date | Now |
+
+Type : User
+| field | mapping | default term |
+| SystemId | string |  |
+| Device | string | "None" |
+| Sub | string | "" |
+| CreatedAt | Date | Now |
+| UpdatedAt | Date | Now |
+
+Type : Calendar
+| field | mapping | default term |
+| Date | Date |  |
+| ItemId | string |  |
+| Users | JSON | "[]" |
+| Device | string | "None" |
+| CreatedAt | Date | Now |
+| UpdatedAt | Date | Now |
+
+Type : Category
+| field | mapping | default term |
+| Name | string | "Dummy Category" |
+| CreatedAt | Date | Now |
+| UpdatedAt | Date | Now |
+
 GCM, APNsを使える様にするにはAPIKeyが必要なのでモック版では行わないでおく
