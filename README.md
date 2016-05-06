@@ -26,26 +26,32 @@ Android, iOS, Web にデバイスに関わらず同じ内容をPushするシス�
 
 ## DB構成
 
-*Index: Push*
+### Index: Push
 
-Type : Item
+#### Type : Item
+
 | field | mapping | default term |
+|---|---|---|
 | Title | string | "no title" |
 | Body | string | "no body" |
 | Category | integer | "" |
 | CreatedAt | Date | Now |
 | UpdatedAt | Date | Now |
 
-Type : User
+#### Type : User
+
 | field | mapping | default term |
+|---|---|---|
 | SystemId | string |  |
 | Device | string | "None" |
 | Sub | string | "" |
 | CreatedAt | Date | Now |
 | UpdatedAt | Date | Now |
 
-Type : Calendar
+#### Type : Calendar
+
 | field | mapping | default term |
+|---|---|---|
 | Date | Date |  |
 | ItemId | string |  |
 | Users | JSON | "[]" |
@@ -53,8 +59,10 @@ Type : Calendar
 | CreatedAt | Date | Now |
 | UpdatedAt | Date | Now |
 
-Type : Category
+#### Type : Category
+
 | field | mapping | default term |
+|---|---|---|
 | Name | string | "Dummy Category" |
 | CreatedAt | Date | Now |
 | UpdatedAt | Date | Now |
