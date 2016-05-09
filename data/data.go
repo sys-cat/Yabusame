@@ -7,7 +7,6 @@ import (
 )
 
 type Item struct {
-  Id        int    `json:"Id"`
   Title     string `json:"Title"`
   Body      string `json:"Body"`
   Category  int    `json:"Category"`
